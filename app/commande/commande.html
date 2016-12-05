@@ -1,0 +1,47 @@
+<div class="commande">
+    <div class="container">
+        <div class="row">
+            <div class="section col s3"></div>
+            <div class="section col s6">
+                <div class="card-panel" style="margin-top: 30%!important;">
+                    <h5 style="margin-left: -10px;">Créer votre pizza</h5>
+                    <div class="row">
+                        <div input-field style="margin-right: 50%!important; padding-top: 25px; padding-left: 10px;">
+                            <select ng-model="pates.val" material-select>
+                                    <option value="" selected disabled>Choisissez une pâte</option>
+                                    <option value="{{pate.id}} "ng-repeat="pate in pates">{{pate.nom}}</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div input-field style="margin-right: 50%!important; padding-left: 10px;">
+                            <select ng-model="bases.val" material-select ng-change="vm.total()">
+                            <option value="" selected disabled>Choisissez une sauce</option>
+                            <option value="{{base.prix}}" ng-repeat="base in bases"> {{base.nom}} <b>({{ base.prix }}€)</b></option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ng-repeat="ingredient in ingredients" class="col s6">
+                            <p>
+                                <input type="checkbox" id="{{ingredient.id}}" ng-model="ingredient.selected" ng-change="vm.total()" />
+                                <label for="{{ingredient.id}}">
+                                {{ ingredient.nom }}
+                                <b>({{ ingredient.prix }}€)</b>
+                            </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            {{ result }}
+                            <a href="#/commande" class="waves-effect waves-light btn modal-action modal-close right"
+                            ng-click="vm.commanderPizza()" ng-disabled="vm.isDisabled">
+                                <i class="material-icons left">local_pizza</i>Commander pour {{ vm.total() }} € !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

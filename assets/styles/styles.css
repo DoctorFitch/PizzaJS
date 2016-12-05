@@ -1,0 +1,8 @@
+body {
+    background-image: url("../images/pizza-background.jpg");
+    background-repeat: no-repeat;
+}
+
+.card-panel {
+    background-color: white;
+}
