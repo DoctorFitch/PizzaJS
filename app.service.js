@@ -9,8 +9,8 @@ function dataservice($http, $log) {
     return {
         getPizzas: getPizzas,
         postCommande: postCommande,
-        addToBasket: addToBasket,
-        getFromBasket: getFromBasket
+        addToFavorite: addToFavorite,
+        getFromFavorite: getFromFavorite
     };
 
     function getPizzas() {
@@ -38,22 +38,22 @@ function dataservice($http, $log) {
             }
             function postCommandeFailed(error) {
                 throw error;
+                $log.error('postCommande: impossible de poster la commande, voir erreur ->', error);
             }
     }
 
-    function addToBasket(pizzaNom, pizzaObj) {
+    function addToFavorite(pizzaNom, pizzaObj) {
         if(typeof(window.localStorage) !== "undefined") {
-            console.log('On entre dans la addTo');
             window.localStorage.setItem(pizzaNom, pizzaObj);
         } else {
-            console.log('Impossible de stocker les pizzas commandés sur ce navigateur');
+            $log.warn('addToBasket: Impossible de stocker les pizzas commandés sur ce navigateur');
         }
     }
 
-    function getFromBasket(key) {
+    function getFromFavorite() {
         if(typeof(window.localStorage) !== "undefined") {
-            console.log('On entre dans le getFromBasket');
-            return window.localStorage.getItem(key);
+            console.log('On entre dans le getFromFavorite');
+            return window.localStorage.getItem('panier');
         } else {
             console.log('Impossible de stocker les pizzas commandés sur ce navigateur');
         }

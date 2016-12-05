@@ -1,8 +1,26 @@
 body {
     background-image: url("../images/pizza-background.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card-panel {
     background-color: white;
+}
+
+#toast-container {
+    top: auto !important;
+    left: auto !important;
+    bottom: 1%;
+    right: 1%;
+}
+
+.center-button-home {
+  margin-top: 60vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-60%); /* tiré de la moitié de sa propre hauteur */
+  text-align: center;
+}
+
+.btn {
+  margin-left: 10px;
 }

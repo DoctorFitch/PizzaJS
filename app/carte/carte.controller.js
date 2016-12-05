@@ -14,8 +14,6 @@ function CarteController($scope, $filter, dataservice, $q, $location) {
     vm.panier = [];
     vm.commanderPizza = commanderPizza;
 
-    $scope.lol = "ta mere la tchoin";
-
     activate();
 
     function activate() {
@@ -39,7 +37,7 @@ function CarteController($scope, $filter, dataservice, $q, $location) {
         vm.panier.push(pizzaObj);
 
         console.log('on inject les pizz');
-        dataservice.addToBasket(pizzaNom, JSON.stringify(vm.panier));
+        dataservice.addToFavorite(pizzaNom, JSON.stringify(vm.panier));
 
     }
 }

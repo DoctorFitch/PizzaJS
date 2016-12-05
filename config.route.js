@@ -15,7 +15,9 @@ function config($routeProvider) {
             controller: 'CarteController',
             controllerAs: 'vm'
         }).when('/', {
-            templateUrl: 'app/accueil/accueil.html'
+            templateUrl: 'app/accueil/accueil.html',
+            controller: 'AccueilController',
+            controllerAs: 'vm'
         }).otherwise({
             redirectTo: '/'
         });

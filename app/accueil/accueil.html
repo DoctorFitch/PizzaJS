@@ -1,26 +1,37 @@
-<style>
-    #toast-container {
-        top: auto !important;
-        left: auto !important;
-        bottom: 1%;
-        right: 1%;
-    }
-</style>
 <main>
+    <div class="accueil">
+        <div class="center-button-home">
+            <a href="#modal" class="waves-effect waves-light btn blue lighten-1 bottom-sheet">
+                <i class="material-icons left">star_border</i>Dernière commande</a>
+            <a href="#commande" class="waves-effect waves-light btn blue lighten-1">
+                <i class="material-icons left">create</i>Créer pizza</a>
+            <a href="#carte" class="waves-effect waves-light btn blue lighten-1">
+                <i class="material-icons left">burst_mode</i>Carte</a>
+        </div>
 
-    <div class="home">
+        <!-- Modal Structure -->
+        <div id="modal" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>Dernières pizza commandées</h4>
+                <ul class="collection">
+              <li class="collection-item avatar" ng-repeat="fav in vm.favorites" style="padding-top: 20px;">
+                <img class="circle" src="data:image/jpg;base64, {{ fav.image }}">
+                <span class="title">{{ fav.nom }}</span>
+                <p>Prix : {{ fav.prix }} <br></p>
+                <a href="#!" class="secondary-content" style="padding-top: 10px;"><i class="material-icons">add_shopping_cart</i></a>
+              </li>
+            </ul>
 
+            </div>
+            <div class="modal-footer">
+                <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
     </div>
-    
-    <!--<div class="parallax-container" style="height: 100%!important; height: 20em; line-height: 20em;">
-        <h1 style="color: white; text-align:center; line-height: 4.5em; font-size: 150;">PizzaJS</h1>
-        <div class="parallax"><img src="assets/images/pizza-background.jpg"></div>
-    </div>-->
 
 </main>
 
- <script>
-     $('.parallax').parallax();
- </script>
-
-<!-- script materialize -->
+<script>
+    $('.modal').modal();
+    $('.parallax').parallax();
+</script>

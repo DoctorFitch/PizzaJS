@@ -6,7 +6,7 @@
                 <div class="card-panel" style="margin-top: 30%!important;">
                     <h5 style="margin-left: -10px;">Créer votre pizza</h5>
                     <div class="row">
-                        <div input-field style="margin-right: 50%!important; padding-top: 25px; padding-left: 10px;">
+                        <div input-field style="padding-top: 25px; padding-left: 10px;">
                             <select ng-model="pates.val" material-select>
                                     <option value="" selected disabled>Choisissez une pâte</option>
                                     <option value="{{pate.id}} "ng-repeat="pate in pates">{{pate.nom}}</option>
@@ -14,14 +14,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div input-field style="margin-right: 50%!important; padding-left: 10px;">
+                        <div input-field style="padding-left: 10px;">
                             <select ng-model="bases.val" material-select ng-change="vm.total()">
                             <option value="" selected disabled>Choisissez une sauce</option>
                             <option value="{{base.prix}}" ng-repeat="base in bases"> {{base.nom}} <b>({{ base.prix }}€)</b></option>
                         </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-left: 10%;">
                         <div ng-repeat="ingredient in ingredients" class="col s6">
                             <p>
                                 <input type="checkbox" id="{{ingredient.id}}" ng-model="ingredient.selected" ng-change="vm.total()" />
