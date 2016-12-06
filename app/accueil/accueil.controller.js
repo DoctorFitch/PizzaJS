@@ -10,20 +10,25 @@
     function AccueilController($scope, $filter, dataservice, $q, $location) {
 
         var vm = this;
-        vm.favorites = ['ok', 'lol'];
-        $scope.ok = '??';
+        vm.favorites = [];
+        vm.viderFavoris = viderFavoris;
 
         activate();
 
         function activate() {
             var promises = [getFavorite()];
             return $q.all(promises).then(function(eventArgs) {
-              console.log(vm.favorites);
+                console.log(vm.favorites);
             });
         }
 
         function getFavorite() {
             vm.favorites = JSON.parse(dataservice.getFromFavorite());
+        }
+
+        function viderFavoris() {
+            console.log('coucou on est là');
+            dataservice.purgeFavorites();
         }
     }
 

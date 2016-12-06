@@ -33,12 +33,15 @@ function CarteController($scope, $filter, dataservice, $q, $location) {
     }
 
     function commanderPizza(pizzaNom, pizzaObj) {
-
+        console.log('commanderPizza');
         vm.panier.push(pizzaObj);
-
-        console.log('on inject les pizz');
         dataservice.addToFavorite(pizzaNom, JSON.stringify(vm.panier));
 
+        dataservice.postCommande(pizzaObj).then(function(data) {
+            Materialize.toast('Pizza commandé !', 4000, 'green');
+        }).catch(function(error) {
+            Materialize.toast('Erreur sur la commande !', 4000, 'red');
+        });
     }
 }
 
