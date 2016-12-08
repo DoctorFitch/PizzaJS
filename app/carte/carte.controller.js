@@ -5,9 +5,9 @@ angular
     .module('carte.controller', ['ui.materialize', 'app.service'])
     .controller('CarteController', CarteController);
 
-CarteController.$inject = ['$scope', '$filter', 'dataservice', '$q', '$location'];
+CarteController.$inject = ['$scope', '$filter', 'dataservice', '$q', '$location', '$log'];
 
-function CarteController($scope, $filter, dataservice, $q, $location) {
+function CarteController($scope, $filter, dataservice, $q, $location, $log) {
 
     var vm = this;
     vm.pizzas = [];
@@ -19,7 +19,7 @@ function CarteController($scope, $filter, dataservice, $q, $location) {
     function activate() {
         var promises = [getPizzas()];
         return $q.all(promises).then(function (eventArgs) {
-            console.log(vm.pizzas);
+            $log.info('Pizzas récupérés');
         });
     }
 
@@ -29,11 +29,12 @@ function CarteController($scope, $filter, dataservice, $q, $location) {
                 return vm.pizzas;
             }).catch(function(error) {
                 Materialize.toast('Impossible de charger la carte !', 4000);
+                $log.warn('Impossible de récupérer les pizzas : getPizzas()');
             });
     }
 
     function commanderPizza(pizzaNom, pizzaObj) {
-        console.log('commanderPizza');
+
         vm.panier.push(pizzaObj);
         dataservice.addToFavorite(pizzaNom, JSON.stringify(vm.panier));
 

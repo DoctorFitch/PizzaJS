@@ -14,17 +14,17 @@
             <div class="modal-content">
                 <h4>Dernières pizza commandées</h4>
                 <ul class="collection">
-                    <li ng-hide="!vm.favorites" class="collection-item avatar" ng-repeat="fav in vm.favorites" style="padding-top: 20px;">
-                        <img class="circle" src="data:image/jpg;base64, {{ fav.image }}">
-                        <span class="title">{{ fav.nom }}</span>
-                        <p>Prix : {{ fav.prix }} <br></p>
-                        <a href="#!" class="secondary-content" style="padding-top: 10px;"><i class="material-icons">add_shopping_cart</i></a>
-                    </li>
-                    <p ng-hide="vm.favorites">Aucune pizza</p>
-                </ul>
-                <div class="modal-footer">
-                    <a href="#!" ng-click="vm.viderFavoris()" class="modal-action modal-close waves-effect waves-green btn-flat">Effacer favoris</a>
-                </div>
+              <li class="collection-item avatar" ng-repeat="fav in vm.favorites" style="padding-top: 20px;">
+                <img class="circle" src="data:image/jpg;base64, {{ fav.image }}">
+                <span class="title">{{ fav.nom }}</span>
+                <p>Prix : {{ fav.prix }} <br></p>
+                <a href="#!" class="secondary-content" style="padding-top: 10px;"><i class="material-icons">add_shopping_cart</i></a>
+              </li>
+            </ul>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
         </div>
     </div>

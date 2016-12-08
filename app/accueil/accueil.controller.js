@@ -11,24 +11,19 @@
 
         var vm = this;
         vm.favorites = [];
-        vm.viderFavoris = viderFavoris;
+        $scope.ok = '';
 
         activate();
 
         function activate() {
             var promises = [getFavorite()];
             return $q.all(promises).then(function(eventArgs) {
-                console.log(vm.favorites);
+              console.log(vm.favorites);
             });
         }
 
         function getFavorite() {
             vm.favorites = JSON.parse(dataservice.getFromFavorite());
-        }
-
-        function viderFavoris() {
-            console.log('coucou on est là');
-            dataservice.purgeFavorites();
         }
     }
 

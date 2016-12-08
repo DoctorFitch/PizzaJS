@@ -5,9 +5,9 @@ angular
     .module('commande.controller', ['ui.materialize', 'app.service'])
     .controller('BodyController', BodyController);
 
-BodyController.$inject = ['$scope', '$filter', 'dataservice', '$q', '$location'];
+BodyController.$inject = ['$scope', '$filter', 'dataservice', '$q', '$location', '$log'];
 
-function BodyController($scope, $filter, dataservice, $q, $location) {
+function BodyController($scope, $filter, dataservice, $q, $location, $log) {
 
     var vm = this;
 
@@ -17,11 +17,10 @@ function BodyController($scope, $filter, dataservice, $q, $location) {
     vm.total = total;
     vm.commanderPizza = commanderPizza;
 
-    // var
     vm.isDisabled = true;
-
     $scope.result = "";
 
+    // datas
     $scope.pates = [
         {id: 1, nom: 'Fine'},
         {id: 2, nom: 'Epaisse'}
@@ -39,32 +38,27 @@ function BodyController($scope, $filter, dataservice, $q, $location) {
         {id: 4, nom: 'Magret',  prix: 4, select: false}
     ];
 
-    activate();
+    //activate();
 
-    function activate() {
+    /*function activate() {
         var promises = [getPizzas()];
         return $q.all(promises).then(function (eventArgs) {
-            console.log(vm.pizzas);
-        });
-    }
 
-    function getPizzas() {
-        return dataservice.getPizzas().then(function(data) {
-                vm.pizzas = data;
-                return vm.pizzas;
-            }).catch(function(error) {
-                Materialize.toast('Impossible de charger la carte !', 4000);
-            });
-    }
+        });
+    }*/
 
     function postCommande(commande) {
+
         return dataservice.postCommande(commande)
             .then(function() {
                 Materialize.toast('Votre commande à correctement été prise en compte !', 4000, 'green');
+                $log.debug('success postCommande');
                 $location.path("/");
             }).catch(function () {
                 Materialize.toast('Une erreur est survenue durant la commande', 4000, 'red');
+                $log.warn('postCommande failed');
             });
+
     }
 
     function total() {
@@ -83,6 +77,7 @@ function BodyController($scope, $filter, dataservice, $q, $location) {
             }
         });
 
+        // permet de déverouiller le bouton de commande
         vm.isDisabled = ($scope.pates.val && $scope.bases.val && atLeastOneSelected) ? false : true;
 
         return total;
@@ -90,10 +85,16 @@ function BodyController($scope, $filter, dataservice, $q, $location) {
 
     function commanderPizza() {
 
-        var pizza = { pate: 'fine', base: 'tomate', anchois: true, jambon: true, miel: true, magret: true };
+        $log.debug('commanderPizza()');
+        var pate = $scope.pates.val;
+        var base = $scope.bases[0].nom;
+
+        var pizza = { pate: pate, base: base, anchois: true, jambon: true, miel: true, magret: true };
+
         var pizzaToPost = JSON.stringify(pizza);
 
         postCommande(pizzaToPost);
+
     }
 }
 
