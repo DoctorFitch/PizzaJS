@@ -14,17 +14,17 @@
             <div class="modal-content">
                 <h4>Dernières pizza commandées</h4>
                 <ul class="collection">
-              <li class="collection-item avatar" ng-repeat="fav in vm.favorites" style="padding-top: 20px;">
-                <img class="circle" src="data:image/jpg;base64, {{ fav.image }}">
-                <span class="title">{{ fav.nom }}</span>
-                <p>Prix : {{ fav.prix }} <br></p>
-                <a href="#!" class="secondary-content" style="padding-top: 10px;"><i class="material-icons">add_shopping_cart</i></a>
-              </li>
-            </ul>
-
-            </div>
-            <div class="modal-footer">
-                <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <li class="collection-item avatar" ng-repeat="fav in vm.favorites" style="padding-top: 20px;">
+                        <img class="circle" src="data:image/jpg;base64, {{ fav.image }}">
+                        <span class="title">{{ fav.nom }}</span>
+                        <p>Prix :
+                            {{ fav.prix }}
+                            <br></p>
+                        <a href="" class="secondary-content" style="padding-top: 10px;" ng-click="vm.commanderPizza('panier', fav)">
+                            <i class="material-icons">add_shopping_cart</i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

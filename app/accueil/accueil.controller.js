@@ -11,7 +11,8 @@
 
         var vm = this;
         vm.favorites = [];
-        $scope.ok = '';
+        vm.panier = [];
+        vm.commanderPizza = commanderPizza;
 
         activate();
 
@@ -24,6 +25,18 @@
 
         function getFavorite() {
             vm.favorites = JSON.parse(dataservice.getFromFavorite());
+        }
+
+        function commanderPizza(pizzaNom, pizzaObj) {
+
+            vm.panier.push(pizzaObj);
+            dataservice.addToFavorite(pizzaNom, JSON.stringify(vm.panier));
+
+            dataservice.postCommande(pizzaObj).then(function(data) {
+                Materialize.toast('Pizza commandé !', 4000, 'green');
+            }).catch(function(error) {
+                Materialize.toast('Erreur sur la commande !', 4000, 'red');
+            });
         }
     }
 

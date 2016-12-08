@@ -38,15 +38,6 @@ function BodyController($scope, $filter, dataservice, $q, $location, $log) {
         {id: 4, nom: 'Magret',  prix: 4, select: false}
     ];
 
-    //activate();
-
-    /*function activate() {
-        var promises = [getPizzas()];
-        return $q.all(promises).then(function (eventArgs) {
-
-        });
-    }*/
-
     function postCommande(commande) {
 
         return dataservice.postCommande(commande)
